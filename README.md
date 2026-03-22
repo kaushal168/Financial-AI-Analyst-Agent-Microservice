@@ -48,7 +48,9 @@ adk deploy cloud_run \
 ## ⚙️ System Architecture & Logic Flow
 The following sequence diagram illustrates how the ADK handles a request, performs dual-task inference via Gemini 2.5 Flash, and enforces the Pydantic JSON contract before returning the payload.
 ```mermaid
+%%{init: {'theme': 'default', 'themeVariables': { 'fontSize': '16px', 'fontFamily': 'arial'}}}%%
 sequenceDiagram
+    autonumber
     participant C as Client (UI / Trading Bot)
     participant CR as Google Cloud Run
     participant ADK as Agent Development Kit
