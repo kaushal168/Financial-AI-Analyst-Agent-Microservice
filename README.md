@@ -58,11 +58,13 @@ sequenceDiagram
     C->>CR: HTTP POST (Raw Financial News)
     CR->>ADK: Route to financial_analyst_agent
     
+    rect rgb(240, 248, 255)
     Note over ADK,LLM: Cognitive Processing Pipeline
     ADK->>LLM: Inject Prompt + Pydantic Schema
     LLM-->>LLM: Task 1: Extract Ticker & Exchange
     LLM-->>LLM: Task 2: Evaluate Sentiment
     LLM-->>ADK: Raw Output Generation
+    end
     
     ADK-->>ADK: Validate against Pydantic Strict JSON Schema
     ADK-->>CR: Formatted JSON Payload
