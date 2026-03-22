@@ -45,6 +45,31 @@ adk deploy cloud_run \
   --allow-unauthenticated
 ```
 
+## ⚙️ System Architecture & Logic Flow
+The following sequence diagram illustrates how the ADK handles a request, performs dual-task inference via Gemini 2.5 Flash, and enforces the Pydantic JSON contract before returning the payload.
+```mermaid
+sequenceDiagram
+    participant C as Client (UI / Trading Bot)
+    participant CR as Google Cloud Run
+    participant ADK as Agent Development Kit
+    participant LLM as Gemini 2.5 Flash
+    
+    C->>CR: HTTP POST (Raw Financial News)
+    CR->>ADK: Route to financial_analyst_agent
+    
+    rect rgb(240, 248, 255)
+    Note over ADK,LLM: Cognitive Processing Pipeline
+    ADK->>LLM: Inject Prompt + Pydantic Schema
+    LLM-->>LLM: Task 1: Extract Ticker & Exchange
+    LLM-->>LLM: Task 2: Evaluate Sentiment
+    LLM-->>ADK: Raw Output Generation
+    end
+    
+    ADK-->>ADK: Validate against Pydantic Strict JSON Schema
+    ADK-->>CR: Formatted JSON Payload
+    CR-->>C: 200 OK (FinancialAnalysisResponse)
+```
+
 ## 🧪 Testing the Endpoint
 
 ### Option 1: Web Interface
