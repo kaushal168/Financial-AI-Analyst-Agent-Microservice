@@ -87,3 +87,9 @@ adk web
   "rationale": "The news merely announces a board meeting to review financial results and discuss a potential demerger, without providing any details on the outcome or impact."
 }
 ```
+
+## 📸 Project Showcase
+To prevent unauthorized quota usage, the live endpoint is not publicly linked. Below is visual proof of the deployed architecture and successful inference.</br>
+*The agent successfully resolved an Indian market "Ticker Collision" via the ADK UI.*
+![Demo Screenshot 1](assets/ui-demo1.png)
+![Demo Screenshot 2](assets/ui-demo2.png)
